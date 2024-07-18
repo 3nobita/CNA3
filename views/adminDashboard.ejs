@@ -1,13 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ADMIN</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+        :root {
+            --color-white: white;
+            --color-black: black;
+            --color-grey: #CECECE;
+            --color-primary: #7385F2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .sideBarre {
+            width: 260px;
+            height: 120vh;
+            background-color: var(--color-white);
+            border: 1px solid var(--color-grey);
+            position: fixed;
+            transition: transform 0.3s ease;
+            transform: translateX(0);
+        }
+
+        .sideBarre.hidden {
+            transform: translateX(-100%);
+        }
+
+        .sideBarre__logo {
+            display: flex;
+            height: 70px;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--color-grey);
+        }
+
+        .sideBarre__logo h1 {
+            color: var(--color-primary);
+        }
+
+        .sideBarre__menu ul li {
+            list-style: none;
+            padding: 18px;
+            transition: all .3s;
+        }
+
+        .sideBarre__menu ul li:hover {
+            border-right: 4px solid var(--color-primary);
+            background-color: aliceblue;
+        }
+
+        .mainContent {
+            background-color: #F4F4FA;
+            min-height: 100vh;
+            margin-left: 260px;
+            transition: margin-left 0.3s ease;
+        }
+
+        .mainContent.shift {
+            margin-left: 0;
+        }
+
+        .toggle-button {
+            cursor: pointer;
+            padding: 10px;
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            border: none;
+            position: fixed;
+            left: 260px;
+            top: 20px;
+            z-index: 10;
+            transition: left 0.3s ease;
+        }
+
+        .toggle-button.move {
+            left: 0;
+        }
+
+        li {
+            text-align: center;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Admin Dashboard</h1>
-    <a href="/api/users/list">View Users</a>
-    <a href="/api/users/logout">Logout</a>
-    <!-- Add more admin functionality as needed -->
+    <button class="toggle-button">Menu</button>
+
+    <div class="sideBarre">
+        <div class="sideBarre__logo">
+            <h1>Admin</h1>
+        </div>
+        <div class="sideBarre__menu">
+            <ul>
+                <li><a href="#">Profile</a></li>
+                <li><a href="/api/users/list">View Users</a></li>
+                <li><a href="/">Logout</a></li>
+                
+                
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="mainContent">
+        <!-- Main content can go here -->
+    </div>
+
+    <script>
+        const toggleButton = document.querySelector('.toggle-button');
+        const sidebar = document.querySelector('.sideBarre');
+        const mainContent = document.querySelector('.mainContent');
+
+        toggleButton.addEventListener('click', () => {
+            sidebar.classList.toggle('hidden');
+            mainContent.classList.toggle('shift');
+            toggleButton.classList.toggle('move');
+        });
+    </script>
 </body>
+
 </html>
